@@ -1,39 +1,46 @@
+# schema.yml
 version: 2
 
 sources:
-  - name: gz_raw_data
-    tables:
-      - name: sales
-        identifier: raw_gz_sales
-  - name: gz_raw_data
-    tables:
-      - name: product
-        identifier: raw_gz_product
-  - name: gz_raw_data
-    tables:
-      - name: ship
-        identifier: raw_gz_ship
-
-
-      
-
-
-
-# models:
-#     - name: my_first_dbt_model
-#       description: "A starter dbt model"
-#       columns:
-#           - name: id
-#             description: "The primary key for this table"
-#             tests:
-#                 - unique
-#                 - not_null
-
-# - name: my_second_dbt_model
-#   description: "A starter dbt model"
-#   columns:
-#       - name: id
-#         description: "The primary key for this table"
-#         tests:
-#             - unique
-#             - not_null
+   - name: gz_raw_data
+     tables:
+       - name: raw_gz_sales
+         description: sales of Greenweez / we have on row per product_id found in each orders_id
+         tests:
+              - unique:
+                 column_name: "(orders_id || '-' || pdt_id)"
+         columns:
+           - name: date_date
+             description: date of purchase
+           - name: orders_id
+             description:
+           - name: products_id
+             description:
+           - name: revenue
+             description:
+           - name: quantity
+             description:
+       - name: raw_gz_product
+         description:
+         columns:
+           - name: products_id
+             description:
+             tests:
+              - unique
+              - not_null
+           - name: purchase_price
+             description:
+       - name: raw_gz_ship
+         description:
+         columns:
+          - name: orders_id
+            description:
+            tests:
+              - unique
+              - not_null
+          - name: shipping_fee
+            description:
+          - name: logcost
+            description:
+          - name: ship_cost
+            description:
